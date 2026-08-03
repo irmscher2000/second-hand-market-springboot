@@ -5,10 +5,12 @@ import java.util.Date;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -22,6 +24,12 @@ public class Usuario {
     private String nombre;
     private String apellidos;
     private String avatar;
+
+    @Lob
+    @Column(columnDefinition = "bytea")
+    private byte[] avatarDatos;
+
+    private String avatarTipo;
 
     @SuppressWarnings("deprecation")
     @CreationTimestamp
@@ -97,6 +105,22 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public byte[] getAvatarDatos() {
+        return avatarDatos;
+    }
+
+    public void setAvatarDatos(byte[] avatarDatos) {
+        this.avatarDatos = avatarDatos;
+    }
+
+    public String getAvatarTipo() {
+        return avatarTipo;
+    }
+
+    public void setAvatarTipo(String avatarTipo) {
+        this.avatarTipo = avatarTipo;
     }
 
     @Override

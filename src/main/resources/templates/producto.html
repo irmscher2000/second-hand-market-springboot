@@ -68,13 +68,13 @@
 			<div class="col-md-offset-1 col-md-8">
 				<div class="col-md-8">
 					<img src="https://placehold.it/1200x600?text=SIN%20IMAGEN"
-						th:src="${#strings.isEmpty(producto.imagen)} ? 'https://placehold.it/1200x600?text=SIN%20IMAGEN' : ${producto.imagen}"
+						th:src="${producto.imagenDatos == null} ? 'https://placehold.it/1200x600?text=SIN%20IMAGEN' : @{/app/producto/imagen/{id}(id=${producto.id})}"
 						class="img-responsive center-block" alt="Image">
 				</div>
 				<div class="col-md-4">
 					<div class="text-center">
 						<img
-							th:src="${#strings.isEmpty(producto.propietario.avatar)} ? @{http://api.adorable.io/avatars/140/{email}.png(email=${producto.propietario.email})} : ${producto.propietario.avatar}"
+							th:src="${producto.propietario.avatarDatos == null} ? @{http://api.adorable.io/avatars/140/{email}.png(email=${producto.propietario.email})} : @{/app/usuario/avatar/{id}(id=${producto.propietario.id})}"
 							name="aboutme" width="140" height="140" class="img-circle">
 						<h5><span
 								th:text="${producto.propietario.nombre + ' ' + producto.propietario.apellidos}"></span><br>

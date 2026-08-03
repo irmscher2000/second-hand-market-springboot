@@ -78,7 +78,7 @@
 					</div>
 					<div class="panel-body">
 						<img src="http://placehold.it/350x260"
-							th:src="${#strings.isEmpty(producto.imagen)} ? 'http://placehold.it/350x260' : ${producto.imagen}"
+							th:src="${producto.imagenDatos == null} ? 'http://placehold.it/350x260' : @{/app/producto/imagen/{id}(id=${producto.id})}"
 							class="img-responsive center-block" alt="Image"
 							style="height: 300px;">
 					</div>

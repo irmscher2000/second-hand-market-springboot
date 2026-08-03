@@ -1,5 +1,7 @@
 package market.secondhandmarket.controladores;
 
+import java.io.IOException;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,7 +20,6 @@ import market.secondhandmarket.upload.StorageService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 
 @Controller
@@ -46,10 +47,10 @@ public class LoginController {
     }
 
     @PostMapping("/auth/register")
-    public String register(@ModelAttribute Usuario usuario, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+    public String register(@ModelAttribute Usuario usuario, HttpServletRequest request, @RequestParam("file") MultipartFile file) throws IOException {
         if(!file.isEmpty()){
-            String imagen = storageService.store(file);
-            usuario.setAvatar(MvcUriComponentsBuilder.fromMethodName(FilesController.class, "serveFile", imagen).build().toUriString());
+            usuario.setAvatarDatos(file.getBytes());
+            usuario.setAvatarTipo(file.getContentType());
         }
 
         String rawPassword = usuario.getPassword();

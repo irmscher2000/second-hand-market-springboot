@@ -1,8 +1,10 @@
 package market.secondhandmarket.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -14,6 +16,12 @@ public class Producto {
     private String nombre;
     private float precio;
     private String imagen;
+
+    @Lob
+    @Column(columnDefinition = "bytea")
+    private byte[] imagenDatos;
+
+    private String imagenTipo;
 
     @ManyToOne
     private Usuario propietario;
@@ -78,6 +86,22 @@ public class Producto {
 
     public void setCompra(Compra compra) {
         this.compra = compra;
+    }
+
+    public byte[] getImagenDatos() {
+        return imagenDatos;
+    }
+
+    public void setImagenDatos(byte[] imagenDatos) {
+        this.imagenDatos = imagenDatos;
+    }
+
+    public String getImagenTipo() {
+        return imagenTipo;
+    }
+
+    public void setImagenTipo(String imagenTipo) {
+        this.imagenTipo = imagenTipo;
     }
 
     @Override

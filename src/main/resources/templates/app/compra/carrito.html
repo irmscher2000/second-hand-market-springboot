@@ -87,7 +87,7 @@
 								<div class="media">
 									<img src="https://placehold.it/150x150?text=SIN%20IMAGEN"
 										class="thumbnail pull-left media-object"
-										th:src="${#strings.isEmpty(producto.imagen)} ? 'https://placehold.it/150x150?text=SIN%20IMAGEN' : ${producto.imagen}"
+										th:src="${producto.imagenDatos == null} ? 'https://placehold.it/150x150?text=SIN%20IMAGEN' : @{/app/producto/imagen/{id}(id=${producto.id})}"
 										style="width: 150px;">
 									<div class="media-body">
 										<h4 class="media-heading">&nbsp;

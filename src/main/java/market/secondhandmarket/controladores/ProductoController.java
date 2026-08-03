@@ -1,5 +1,6 @@
 package market.secondhandmarket.controladores;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -12,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-
 import market.secondhandmarket.modelo.Producto;
 import market.secondhandmarket.modelo.Usuario;
 import market.secondhandmarket.servicios.ProductoServicio;
@@ -66,12 +65,10 @@ public class ProductoController {
     }
 
     @PostMapping("/producto/nuevo/submit")
-    public String nuevoProductoSubmit(@ModelAttribute Producto producto, Authentication authentication, @RequestParam("file") MultipartFile file) {
+    public String nuevoProductoSubmit(@ModelAttribute Producto producto, Authentication authentication, @RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
-            String imagen = storageService.store(file);
-            producto.setImagen(MvcUriComponentsBuilder.fromMethodName(FilesController.class, "serveFile", imagen).build().toUriString());
-        } else {
-            producto.setImagen("");
+            producto.setImagenDatos(file.getBytes());
+            producto.setImagenTipo(file.getContentType());
         }
 
         Usuario usuario = usuarioServicio.buscarPorEmail(authentication.getName());
