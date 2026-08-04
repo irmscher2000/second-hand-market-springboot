@@ -10,6 +10,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Column;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -25,6 +26,7 @@ public class Usuario {
     private String avatar;
 
     @Lob
+    @Column(columnDefinition = "bytea")
     private byte[] avatarDatos;
 
     private String avatarTipo;
