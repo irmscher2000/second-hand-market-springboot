@@ -24,11 +24,11 @@ public class FilesController {
         this.usuarioServicio = usuarioServicio;
     }
 
-    @GetMapping("/app/producto/imagen/{id}")
+    @GetMapping("/imagen/producto/{id}")
     @ResponseBody
     public ResponseEntity<byte[]> servirImagenProducto(@PathVariable long id) {
         Producto producto = productoServicio.findById(id);
-        if (producto == null || producto.getImagen() == null) {
+        if (producto == null || producto.getImagenDatos() == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok()
@@ -36,7 +36,7 @@ public class FilesController {
                 .body(producto.getImagenDatos());
     }
 
-    @GetMapping("/app/usuario/avatar/{id}")
+    @GetMapping("/imagen/usuario/{id}")
     @ResponseBody
     public ResponseEntity<byte[]> servirAvatarUsuario(@PathVariable long id) {
         Usuario usuario = usuarioServicio.findById(id); 

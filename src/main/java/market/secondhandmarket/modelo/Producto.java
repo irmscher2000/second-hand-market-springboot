@@ -1,6 +1,5 @@
 package market.secondhandmarket.modelo;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,7 +17,6 @@ public class Producto {
     private String imagen;
 
     @Lob
-    @Column(columnDefinition = "bytea")
     private byte[] imagenDatos;
 
     private String imagenTipo;

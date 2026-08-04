@@ -5,7 +5,6 @@ import java.util.Date;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +25,6 @@ public class Usuario {
     private String avatar;
 
     @Lob
-    @Column(columnDefinition = "bytea")
     private byte[] avatarDatos;
 
     private String avatarTipo;

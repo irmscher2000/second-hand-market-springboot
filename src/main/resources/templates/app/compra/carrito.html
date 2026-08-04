@@ -85,9 +85,9 @@
 						<tr th:each="producto : ${carrito}">
 							<td class="col-md-10">
 								<div class="media">
-									<img src="https://placehold.it/150x150?text=SIN%20IMAGEN"
+									<img src="https://placehold.co/150x150?text=SIN%20IMAGEN"
 										class="thumbnail pull-left media-object"
-										th:src="${producto.imagenDatos == null} ? 'https://placehold.it/150x150?text=SIN%20IMAGEN' : @{/app/producto/imagen/{id}(id=${producto.id})}"
+										th:src="${producto.imagenDatos == null} ? 'https://placehold.co/150x150?text=SIN%20IMAGEN' : @{/imagen/producto/{id}(id=${producto.id})}"
 										style="width: 150px;">
 									<div class="media-body">
 										<h4 class="media-heading">&nbsp;
