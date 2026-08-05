@@ -3,7 +3,6 @@ package market.secondhandmarket.modelo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 
@@ -17,7 +16,6 @@ public class Producto {
     private float precio;
     private String imagen;
 
-    @Lob
     @Column(columnDefinition = "bytea")
     private byte[] imagenDatos;
 
